@@ -1,0 +1,31 @@
+cluster:
+  mkdir -p logs/{rule} &&
+  sbatch
+    -t 10:00:00
+    --cpus-per-task={threads}
+    --mem={resources.mem_mb}
+    --mem-per-cpu={resources.mem_mb}MB
+    --jobs=50
+    --job-name=smk-{rule}-{wildcards}
+    --output=logs/{rule}/{rule}-{wildcards}-%j.out
+    -e logs/{rule}/{rule}-{wildcards}-%j.err
+    -p mhgcp,short
+#    --time {resources.time}
+default-resources:
+  - mem_mb=4500
+  - time="02:00:00"
+  - runtime_min=240
+  - A=eagen
+restart-times: 0
+max-jobs-per-second: 20
+max-status-checks-per-second: 1
+local-cores: 1
+latency-wait: 60
+jobs: 50
+keep-going: True
+rerun-incomplete: True
+printshellcmds: True
+scheduler: greedy
+use-conda: True
+
+
