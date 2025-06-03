@@ -1,1 +1,3 @@
 # pipeline_validate
+
+Snakemake pipeline for mapping and quantifying the aboundance of sgRNA fragments from Twist oligo pools and Perturb-seq plasmid libraries in order to validate library representation and sgRNA presence prior to screening. Requires bowtie2, multiqc, Snakemake v7.28.2 and subread. Requires a bowtie2 genome composed of every sgRNA fragment stitched together and a gtf file that contains the identity of each fragment for quantification. A separate gtf can be provided for the oligo pool and the library. Default mapping and quantification parameters are set for a 148 bp oligo pool fragment and a 479 bp plasmid fragment. Execute using snakemake --cluster "sbatch -t {resources.time} --mem={resources.mem_mb} -c {threads}" -j 300 --use-conda --latency-wait 60

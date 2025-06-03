@@ -13,6 +13,6 @@ rule map_with_bowtie2:
         time="48:00:00"
     shell:
         """
-        bowtie2 -x {params.index} -1 {input[0]} -2 {input[1]} -I 450 -X 500 --very-sensitive --end-to-end --no-discordant --no-mixed | samtools sort - > {output}
+        bowtie2 -x {params.index} -1 {input[0]} -2 {input[1]} -I 148 -X 479 --very-sensitive --end-to-end --no-discordant --no-mixed | samtools sort - > {output}
         samtools index {output}
         """

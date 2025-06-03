@@ -5,7 +5,9 @@ rule featureCounts:
         counts="data/mapped/counts_{sample}.txt",
         summary="data/mapped/counts_{sample}.txt.summary"
     params:
-        annotations=GTF_FILE
+        annotations=lambda wildcards: glob.glob("*-library-annotations.gtf")[0] 
+                    if "library" in wildcards.sample 
+                    else glob.glob("*-pool-annotations.gtf")[0]
     threads: 8
     resources:
         mem_mb=16000,
